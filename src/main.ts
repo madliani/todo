@@ -14,7 +14,10 @@ const pinia = createPinia()
 
 const vuetify = createVuetify({
   components,
-  directives
+  directives,
+  theme: {
+    defaultTheme: 'dark'
+  }
 })
 
 app.use(pinia)
