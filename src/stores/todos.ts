@@ -41,5 +41,6 @@ export const useTodos = defineStore<Id, TodosState, Getters, Actions>('todos', {
         title
       })
     }
-  }
+  },
+  persist: true
 })
