@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import ItemIcon from '@/views/icons/IconItem.vue'
+import TodoList from '@/components/TodoList.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <TodoList>
+    <template #icon>
+      <ItemIcon />
+    </template>
+  </TodoList>
 </template>
+
+<style scoped>
+@media (min-width: 1024px) {
+}
+</style>
