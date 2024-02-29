@@ -1,4 +1,6 @@
+import { Routes } from '@/types/routes'
 import HomeView from '@/views/HomeView.vue'
+import TodoViewVue from '@/views/TodoView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -7,7 +9,12 @@ const router = createRouter({
     {
       component: HomeView,
       name: 'home',
-      path: '/'
+      path: Routes.HOME
+    },
+    {
+      component: TodoViewVue,
+      name: 'todo',
+      path: Routes.TODO
     }
   ]
 })

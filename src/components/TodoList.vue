@@ -6,9 +6,6 @@ const { todos } = useTodos()
 </script>
 
 <template>
-  <div>
-    <slot name="icon"></slot>
-  </div>
   <v-list>
     <TodoItem
       :description="todo.description"
