@@ -1,4 +1,4 @@
-import type { Filter, TodoList } from '@/types/Todo'
+import type { Filter, TodoList } from '@/types/todo'
 import { defineStore } from 'pinia'
 
 type Id = 'todos'
