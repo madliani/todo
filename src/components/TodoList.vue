@@ -9,12 +9,14 @@ const { todos } = useTodos()
   <div>
     <slot name="icon"></slot>
   </div>
-  <TodoItem
-    v-for="todo in todos"
-    :key="todo.id"
-    :description="todo.description"
-    :title="todo.title"
-  ></TodoItem>
+  <v-list>
+    <TodoItem
+      :description="todo.description"
+      :key="todo.id"
+      :title="todo.title"
+      v-for="todo in todos"
+    />
+  </v-list>
 </template>
 
 <style scoped>

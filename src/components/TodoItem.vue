@@ -1,24 +1,19 @@
 <script setup lang="ts">
 type Props = {
-  title: string
   description: string
+  title: string
 }
 
 withDefaults(defineProps<Props>(), {
-  title: 'New item',
-  description: 'Short description.'
+  description: 'Short description.',
+  title: 'New item'
 })
 </script>
 
 <template>
-  <div>
-    <div>
-      <span>{{ title }}</span>
-    </div>
-    <div>
-      <span>{{ description }}</span>
-    </div>
-  </div>
+  <v-list-item :title="title">
+    <span>{{ description }}</span>
+  </v-list-item>
 </template>
 
 <style scoped>
