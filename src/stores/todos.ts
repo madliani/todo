@@ -1,10 +1,9 @@
-import type { Filter, Todos } from '@/types/todo'
+import type { Todos } from '@/types/todo'
 import { defineStore } from 'pinia'
 
 type Id = 'todos'
 
 type State = {
-  filter: Filter
   nextId: number
   todos: Todos
 }
