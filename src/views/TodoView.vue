@@ -6,6 +6,7 @@ import TodoList from '@/components/TodoList.vue'
 <template>
   <v-main class="d-flex flex-column align-center justify-center">
     <TodoCreator />
+
     <TodoList />
   </v-main>
 </template>
