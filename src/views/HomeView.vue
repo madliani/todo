@@ -8,7 +8,7 @@ import { RouterLink } from 'vue-router'
   <v-main class="d-flex flex-column align-center justify-center">
     <v-avatar :image="IconTodo" size="256" />
 
-    <p class="text-h3 text-center">
+    <p class="text-center text-h3">
       <span class="d-none d-sm-inline">Your tasks </span>
 
       <RouterLink :to="Routes.TODO">-></RouterLink>
