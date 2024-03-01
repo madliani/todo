@@ -5,12 +5,10 @@ import type { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <v-navigation-drawer />
   <v-main class="d-flex align-center justify-center">
     <v-img :src="IconTodo" :width="300"></v-img>
     <p class="text-h2">Your checklist <RouterLink :to="Routes.TODO">-></RouterLink></p>
   </v-main>
-  <v-navigation-drawer location="right" />
 </template>
 
 <style scoped>

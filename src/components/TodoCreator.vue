@@ -26,8 +26,9 @@ const { handleSubmit, handleReset } = useForm({
     }
   }
 })
-const title = useField('title')
+
 const description = useField('description')
+const title = useField('title')
 const { addTodo } = useTodos()
 
 const submit = handleSubmit((values) => {
@@ -43,25 +44,37 @@ const submit = handleSubmit((values) => {
 </script>
 
 <template>
-  <form @submit.prevent="submit">
-    <v-text-field
-      :counter="10"
-      :error-messages="title.errorMessage.value"
-      label="Title"
-      v-model="title.value.value"
-    ></v-text-field>
+  <v-card variant="outlined">
+    <v-card-item>
+      <form @submit.prevent="submit" class="ma-4">
+        <p class="text-h3">Add task</p>
 
-    <v-textarea
-      :counter="80"
-      :error-messages="description.errorMessage.value"
-      label="Description"
-      v-model="description.value.value"
-    ></v-textarea>
+        <v-text-field
+          :counter="10"
+          :error-messages="title.errorMessage.value"
+          class="mb-2"
+          clearable
+          label="Title"
+          v-model="title.value.value"
+          variant="outlined"
+        ></v-text-field>
 
-    <v-btn class="me-4" type="submit">Add</v-btn>
+        <v-textarea
+          :counter="80"
+          :error-messages="description.errorMessage.value"
+          class="mb-2"
+          clearable
+          label="Description"
+          v-model="description.value.value"
+          variant="outlined"
+        ></v-textarea>
 
-    <v-btn @click="handleReset">Clear</v-btn>
-  </form>
+        <v-btn class="mr-4" color="primary" type="submit" variant="elevated">Add</v-btn>
+
+        <v-btn @click="handleReset" color="secondary" variant="elevated">Clear</v-btn>
+      </form>
+    </v-card-item>
+  </v-card>
 </template>
 
 <style scoped>
