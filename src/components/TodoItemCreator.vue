@@ -2,6 +2,11 @@
 import { useTodosStore } from '@/stores/todos'
 import { useField, useForm } from 'vee-validate'
 
+type Props = {
+  edit: () => void
+  id: number
+}
+
 const { handleReset, handleSubmit } = useForm({
   validationSchema: {
     description(value: string) {
@@ -29,26 +34,30 @@ const { handleReset, handleSubmit } = useForm({
 
 const description = useField('description')
 const title = useField('title')
-const { addTodo } = useTodosStore()
+const { updateTodo } = useTodosStore()
+const { id, edit } = defineProps<Props>()
 
 const submit = handleSubmit((values) => {
   try {
     const { description: formDescription, title: formTitle } = values
 
-    addTodo(formTitle, formDescription)
+    updateTodo(id, formTitle, formDescription)
     handleReset()
   } catch (exception) {
     console.error(exception)
   }
 })
+
+const close = () => {
+  handleReset()
+  edit()
+}
 </script>
 
 <template>
   <v-card class="mr-4" variant="outlined">
     <v-card-item>
       <form @submit.prevent="submit" class="ma-4">
-        <p class="text-h3">Add task</p>
-
         <v-text-field
           :counter="10"
           :error-messages="title.errorMessage.value"
@@ -69,9 +78,9 @@ const submit = handleSubmit((values) => {
           variant="outlined"
         ></v-textarea>
 
-        <v-btn class="mr-4" color="primary" type="submit" variant="elevated">Add</v-btn>
+        <v-btn class="mr-4" color="primary" type="submit" variant="elevated">Update</v-btn>
 
-        <v-btn @click="handleReset" color="secondary" variant="elevated">Clear</v-btn>
+        <v-btn @click="close" color="secondary" variant="elevated">Close</v-btn>
       </form>
     </v-card-item>
   </v-card>
