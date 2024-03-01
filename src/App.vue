@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ImageTodo from '@/assets/images/logo.png'
+import LogoTodo from '@/assets/icons/logo.png'
 import { RouterView } from 'vue-router'
 import { Routes } from './types/routes'
 </script>
@@ -9,7 +9,7 @@ import { Routes } from './types/routes'
     <v-app-bar>
       <template v-slot:prepend>
         <RouterLink :to="Routes.HOME">
-          <v-img :src="ImageTodo" :width="48"></v-img>
+          <v-img :src="LogoTodo" :width="48"></v-img>
         </RouterLink>
       </template>
 

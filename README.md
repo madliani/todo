@@ -1,7 +1,7 @@
 # Tasks Manager
 
 <p align="center">
-    <img src="./src/assets/images/logo.png" alt="Reactify logo" />
+    <img src="./src/assets/icons/logo.png" alt="Reactify logo" />
 
     Your task manager
 
