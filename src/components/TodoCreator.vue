@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTodos } from '@/stores/todos'
+import { useTodosStore } from '@/stores/todos'
 import { useField, useForm } from 'vee-validate'
 
 const { handleSubmit, handleReset } = useForm({
@@ -29,7 +29,7 @@ const { handleSubmit, handleReset } = useForm({
 
 const description = useField('description')
 const title = useField('title')
-const { addTodo } = useTodos()
+const { addTodo } = useTodosStore()
 
 const submit = handleSubmit((values) => {
   try {
@@ -44,7 +44,7 @@ const submit = handleSubmit((values) => {
 </script>
 
 <template>
-  <v-card variant="outlined">
+  <v-card class="mr-4" variant="outlined">
     <v-card-item>
       <form @submit.prevent="submit" class="ma-4">
         <p class="text-h3">Add task</p>

@@ -4,12 +4,9 @@ import TodoList from '@/components/TodoList.vue'
 </script>
 
 <template>
-  <v-main class="v-main d-flex align-center justify-center">
+  <v-main class="d-flex align-center justify-center">
     <TodoCreator />
-    <v-layout class="d-flex flex-column align-center justify-center">
-      <p class="text-h3 my-4">Checklist</p>
-      <TodoList />
-    </v-layout>
+    <TodoList />
   </v-main>
 </template>
 

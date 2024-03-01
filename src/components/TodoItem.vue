@@ -1,19 +1,26 @@
 <script setup lang="ts">
-type Props = {
-  description: string
-  title: string
-}
+import { useTodosStore } from '@/stores/todos'
+import type { TodoItem } from '@/types/todo'
 
-withDefaults(defineProps<Props>(), {
-  description: 'Short description.',
-  title: 'New item'
-})
+type Props = TodoItem
+
+const { deleteTodo } = useTodosStore()
+
+defineProps<Props>()
 </script>
 
 <template>
-  <v-list-item :title="title">
-    <span>{{ description }}</span>
-  </v-list-item>
+  <v-card variant="outlined">
+    <v-card-item>
+      <v-list-item>
+        <v-text-field :value="title" />
+        <v-textarea :value="description" />
+      </v-list-item>
+    </v-card-item>
+    <v-card-actions>
+      <v-btn @click="() => deleteTodo(id)" color="red" variant="elevated">Delete</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <style scoped>
