@@ -12,7 +12,7 @@ const { todos } = storeToRefs(todosStore)
   <v-card class="mb-4 w-75" variant="elevated">
     <v-card-title class="my-4 text-center text-h3">Tasks</v-card-title>
 
-    <v-card-item>
+    <v-card-item v-if="todos.values.length">
       <v-list>
         <TodoItem
           :description="todo.description"
