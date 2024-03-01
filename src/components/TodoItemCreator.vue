@@ -10,32 +10,41 @@ type Props = {
 const { handleReset, handleSubmit } = useForm({
   validationSchema: {
     description(value: string) {
-      const minLength = 1
-      const maxLength = 80
+      try {
+        const minLength = 1
+        const maxLength = 80
 
-      if (value?.length >= minLength && value?.length <= maxLength) {
-        return true
+        if (value.length >= minLength && value.length <= maxLength) {
+          return true
+        }
+
+        return 'The description must contain a minimum of one character and a maximum of eighty characters.'
+      } catch (exception) {
+        console.error(exception)
       }
-
-      return 'The description must contain a minimum of one character and a maximum of eighty characters.'
     },
     title(value: string) {
-      const minLength = 1
-      const maxLength = 10
+      try {
+        const minLength = 1
+        const maxLength = 10
 
-      if (value?.length >= minLength && value?.length <= maxLength) {
-        return true
+        if (value.length >= minLength && value.length <= maxLength) {
+          return true
+        }
+
+        return 'The title must contain a minimum of one character and a maximum of ten characters.'
+      } catch (exception) {
+        console.error(exception)
       }
-
-      return 'The title must contain a minimum of one character and a maximum of ten characters.'
     }
   }
 })
 
+const { id, edit } = defineProps<Props>()
+
 const description = useField('description')
 const title = useField('title')
 const { updateTodo } = useTodosStore()
-const { id, edit } = defineProps<Props>()
 
 const submit = handleSubmit((values) => {
   try {
@@ -43,6 +52,7 @@ const submit = handleSubmit((values) => {
 
     updateTodo(id, formTitle, formDescription)
     handleReset()
+    edit()
   } catch (exception) {
     console.error(exception)
   }
@@ -55,9 +65,9 @@ const close = () => {
 </script>
 
 <template>
-  <v-card class="mr-4" variant="outlined">
+  <v-card>
     <v-card-item>
-      <form @submit.prevent="submit" class="ma-4">
+      <form @submit.prevent="submit" class="my-2">
         <v-text-field
           :counter="10"
           :error-messages="title.errorMessage.value"
@@ -66,7 +76,7 @@ const close = () => {
           label="Title"
           v-model="title.value.value"
           variant="outlined"
-        ></v-text-field>
+        />
 
         <v-textarea
           :counter="80"
@@ -76,17 +86,12 @@ const close = () => {
           label="Description"
           v-model="description.value.value"
           variant="outlined"
-        ></v-textarea>
+        />
 
-        <v-btn class="mr-4" color="primary" type="submit" variant="elevated">Update</v-btn>
+        <v-btn class="mr-4 mb-2" color="primary" type="submit" variant="elevated">Update</v-btn>
 
-        <v-btn @click="close" color="secondary" variant="elevated">Close</v-btn>
+        <v-btn @click="close" class="mb-2" color="secondary" variant="elevated">Close</v-btn>
       </form>
     </v-card-item>
   </v-card>
 </template>
-
-<style scoped>
-@media (min-width: 1024px) {
-}
-</style>

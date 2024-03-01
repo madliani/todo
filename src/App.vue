@@ -21,6 +21,8 @@ import { Routes } from './types/routes'
 </template>
 
 <style scoped>
-@media (min-width: 1024px) {
+.v-layout {
+  min-height: 100%;
+  min-width: 100%;
 }
 </style>

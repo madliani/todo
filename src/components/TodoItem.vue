@@ -17,7 +17,7 @@ defineProps<Props>()
 </script>
 
 <template>
-  <v-list-item variant="outlined">
+  <v-list-item class="mb-4" variant="outlined">
     <TodoItemCreator v-if="isEditing" :edit="edit" :id="id" />
     <v-card v-if="!isEditing">
       <v-card-title>

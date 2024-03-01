@@ -9,8 +9,8 @@ const { todos } = storeToRefs(todosStore)
 </script>
 
 <template>
-  <v-card class="ml-4" variant="outlined">
-    <v-card-title class="text-h3">Checklist</v-card-title>
+  <v-card class="mb-4 w-75" variant="elevated">
+    <v-card-title class="my-4 text-center text-h3">Checklist</v-card-title>
     <v-card-item>
       <v-list>
         <TodoItem
@@ -25,8 +25,3 @@ const { todos } = storeToRefs(todosStore)
     </v-card-item>
   </v-card>
 </template>
-
-<style scoped>
-@media (min-width: 1024px) {
-}
-</style>

@@ -5,24 +5,32 @@ import { useField, useForm } from 'vee-validate'
 const { handleReset, handleSubmit } = useForm({
   validationSchema: {
     description(value: string) {
-      const minLength = 1
-      const maxLength = 80
+      try {
+        const minLength = 1
+        const maxLength = 80
 
-      if (value?.length >= minLength && value?.length <= maxLength) {
-        return true
+        if (value.length >= minLength && value.length <= maxLength) {
+          return true
+        }
+
+        return 'The description must contain a minimum of one character and a maximum of eighty characters.'
+      } catch (exception) {
+        console.error(exception)
       }
-
-      return 'The description must contain a minimum of one character and a maximum of eighty characters.'
     },
     title(value: string) {
-      const minLength = 1
-      const maxLength = 10
+      try {
+        const minLength = 1
+        const maxLength = 10
 
-      if (value?.length >= minLength && value?.length <= maxLength) {
-        return true
+        if (value.length >= minLength && value.length <= maxLength) {
+          return true
+        }
+
+        return 'The title must contain a minimum of one character and a maximum of ten characters.'
+      } catch (exception) {
+        console.error(exception)
       }
-
-      return 'The title must contain a minimum of one character and a maximum of ten characters.'
     }
   }
 })
@@ -44,10 +52,10 @@ const submit = handleSubmit((values) => {
 </script>
 
 <template>
-  <v-card class="mr-4" variant="outlined">
+  <v-card class="my-4 w-75" variant="elevated">
     <v-card-item>
-      <form @submit.prevent="submit" class="ma-4">
-        <p class="text-h3">Add task</p>
+      <form @submit.prevent="submit">
+        <p class="text-h5 mb-2">Add a task</p>
 
         <v-text-field
           :counter="10"
@@ -57,7 +65,7 @@ const submit = handleSubmit((values) => {
           label="Title"
           v-model="title.value.value"
           variant="outlined"
-        ></v-text-field>
+        />
 
         <v-textarea
           :counter="80"
@@ -67,7 +75,7 @@ const submit = handleSubmit((values) => {
           label="Description"
           v-model="description.value.value"
           variant="outlined"
-        ></v-textarea>
+        />
 
         <v-btn class="mr-4" color="primary" type="submit" variant="elevated">Add</v-btn>
 
@@ -76,8 +84,3 @@ const submit = handleSubmit((values) => {
     </v-card-item>
   </v-card>
 </template>
-
-<style scoped>
-@media (min-width: 1024px) {
-}
-</style>
