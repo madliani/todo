@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useTodosStore } from '@/stores/todos'
-import type { TodoItem } from '@/types/todo'
+import type { Todo } from '@/types/todo'
 import { ref } from 'vue'
 import TodoItemCreator from './TodoItemCreator.vue'
 
-type Props = TodoItem
+type Props = Todo
 
 const { deleteTodo } = useTodosStore()
 const isEditing = ref(false)

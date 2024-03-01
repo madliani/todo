@@ -16,7 +16,6 @@ const { todos } = storeToRefs(todosStore)
         <TodoItem
           :description="todo.description"
           :id="todo.id"
-          :is-finished="todo.isFinished"
           :key="todo.id"
           :title="todo.title"
           v-for="todo in todos"

@@ -1,4 +1,4 @@
-import type { Filter, TodoList } from '@/types/todo'
+import type { Filter, Todos } from '@/types/todo'
 import { defineStore } from 'pinia'
 
 type Id = 'todos'
@@ -6,13 +6,10 @@ type Id = 'todos'
 type State = {
   filter: Filter
   nextId: number
-  todos: TodoList
+  todos: Todos
 }
 
-type Getters = {
-  finishedTodos: (state: State) => TodoList
-  unfinishedTodos: (state: State) => TodoList
-}
+type Getters = {}
 
 type Actions = {
   addTodo: (title: string, description: string) => void
@@ -26,14 +23,6 @@ export const useTodosStore = defineStore<Id, State, Getters, Actions>('todos', {
     nextId: 0,
     todos: []
   }),
-  getters: {
-    finishedTodos(state) {
-      return state.todos.filter((todo) => todo.isFinished)
-    },
-    unfinishedTodos(state) {
-      return state.todos.filter((todo) => !todo.isFinished)
-    }
-  },
   actions: {
     addTodo(title, description) {
       this.todos = [
@@ -41,7 +30,6 @@ export const useTodosStore = defineStore<Id, State, Getters, Actions>('todos', {
         {
           description,
           id: this.nextId++,
-          isFinished: false,
           title
         }
       ]

@@ -20,10 +20,10 @@ const vuetify = createVuetify({
   }
 })
 
+pinia.use(piniaPluginPersistedstate)
+
 app.use(pinia)
 app.use(router)
 app.use(vuetify)
-
-pinia.use(piniaPluginPersistedstate)
 
 app.mount('#app')

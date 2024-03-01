@@ -1,9 +1,8 @@
-export type TodoItem = {
+export type Todo = {
   description: string
   id: number
-  isFinished: boolean
   title: string
 }
 
-export type TodoList = TodoItem[]
+export type Todos = Todo[]
 export type Filter = 'all' | 'finished' | 'unfinished'
