@@ -33,8 +33,3 @@ defineProps<Props>()
     </v-card>
   </v-list-item>
 </template>
-
-<style scoped>
-@media (min-width: 1024px) {
-}
-</style>

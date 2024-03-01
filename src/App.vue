@@ -13,7 +13,7 @@ import { Routes } from './types/routes'
         </RouterLink>
       </template>
 
-      <v-app-bar-title>Checklist</v-app-bar-title>
+      <v-app-bar-title>Task Manager</v-app-bar-title>
     </v-app-bar>
 
     <RouterView />
