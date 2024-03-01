@@ -27,7 +27,7 @@ defineProps<Props>()
         {{ description }}
       </v-card-item>
       <v-card-actions>
-        <v-btn @click="edit" color="primary" variant="elevated">Update</v-btn>
+        <v-btn @click="edit" color="primary" variant="elevated">Edit</v-btn>
         <v-btn @click="() => deleteTodo(id)" color="red" variant="elevated">Delete</v-btn>
       </v-card-actions>
     </v-card>
