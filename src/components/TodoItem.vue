@@ -6,14 +6,15 @@ import TodoItemCreator from './TodoItemCreator.vue'
 
 type Props = Todo
 
+defineProps<Props>()
+
 const { deleteTodo } = useTodosStore()
+
 const isEditing = ref(false)
 
 const edit = () => {
   isEditing.value = !isEditing.value
 }
-
-defineProps<Props>()
 </script>
 
 <template>

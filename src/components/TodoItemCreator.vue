@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useTodosStore } from '@/stores/todos'
+import { storeToRefs } from 'pinia'
 import { useField, useForm } from 'vee-validate'
 
 type Props = {
@@ -7,61 +8,60 @@ type Props = {
   id: number
 }
 
+const { id, edit } = defineProps<Props>()
+
+const todosStore = useTodosStore()
+const { todos } = storeToRefs(todosStore)
+const { updateTodo } = todosStore
+const todo = todos.value.find((todo) => todo.id === id)
+
 const { handleReset, handleSubmit } = useForm({
+  initialValues: {
+    description: todo?.description ?? '',
+    title: todo?.title ?? ''
+  },
   validationSchema: {
     description(value: string) {
-      try {
-        const minLength = 1
-        const maxLength = 80
+      const minLength = 1
+      const maxLength = 80
 
-        if (value.length >= minLength && value.length <= maxLength) {
-          return true
-        }
-
-        return 'The description must contain a minimum of one character and a maximum of eighty characters.'
-      } catch (exception) {
-        console.error(exception)
+      if (value.length >= minLength && value.length <= maxLength) {
+        return true
       }
+
+      return 'The description must contain a minimum of one character and a maximum of eighty characters.'
     },
     title(value: string) {
-      try {
-        const minLength = 1
-        const maxLength = 10
+      const minLength = 1
+      const maxLength = 10
 
-        if (value.length >= minLength && value.length <= maxLength) {
-          return true
-        }
-
-        return 'The title must contain a minimum of one character and a maximum of ten characters.'
-      } catch (exception) {
-        console.error(exception)
+      if (value.length >= minLength && value.length <= maxLength) {
+        return true
       }
+
+      return 'The title must contain a minimum of one character and a maximum of ten characters.'
     }
   }
 })
 
-const { id, edit } = defineProps<Props>()
-
 const description = useField('description')
 const title = useField('title')
-const { updateTodo } = useTodosStore()
+
+const close = () => {
+  handleReset()
+  edit()
+}
 
 const submit = handleSubmit((values) => {
   try {
     const { description: formDescription, title: formTitle } = values
 
     updateTodo(id, formTitle, formDescription)
-    handleReset()
-    edit()
+    close()
   } catch (exception) {
     console.error(exception)
   }
 })
-
-const close = () => {
-  handleReset()
-  edit()
-}
 </script>
 
 <template>

@@ -35,20 +35,17 @@ export const useTodosStore = defineStore<Id, State, Getters, Actions>('todos', {
       ]
     },
     deleteTodo(id) {
-      this.todos = this.todos.filter((item) => item.id !== id)
+      this.todos = this.todos.filter((todo) => todo.id !== id)
     },
     updateTodo(id, title, description) {
       const todos = [...this.todos]
+      const index = todos.findIndex((todo) => todo.id === id)
 
-      try {
-        const itemIndex = todos.findIndex((item) => item.id === id)
-
-        todos[itemIndex].title = title
-        todos[itemIndex].description = description
+      if (index !== -1) {
+        todos[index].title = title
+        todos[index].description = description
 
         this.todos = todos
-      } catch (exception) {
-        console.log(exception)
       }
     }
   },

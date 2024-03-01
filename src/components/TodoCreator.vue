@@ -2,52 +2,45 @@
 import { useTodosStore } from '@/stores/todos'
 import { useField, useForm } from 'vee-validate'
 
+const { addTodo } = useTodosStore()
+
 const { handleReset, handleSubmit } = useForm({
+  initialValues: {
+    description: '',
+    title: ''
+  },
   validationSchema: {
     description(value: string) {
-      try {
-        const minLength = 1
-        const maxLength = 80
+      const minLength = 1
+      const maxLength = 80
 
-        if (value.length >= minLength && value.length <= maxLength) {
-          return true
-        }
-
-        return 'The description must contain a minimum of one character and a maximum of eighty characters.'
-      } catch (exception) {
-        console.error(exception)
+      if (value.length >= minLength && value.length <= maxLength) {
+        return true
       }
+
+      return 'The description must contain a minimum of one character and a maximum of eighty characters.'
     },
     title(value: string) {
-      try {
-        const minLength = 1
-        const maxLength = 10
+      const minLength = 1
+      const maxLength = 10
 
-        if (value.length >= minLength && value.length <= maxLength) {
-          return true
-        }
-
-        return 'The title must contain a minimum of one character and a maximum of ten characters.'
-      } catch (exception) {
-        console.error(exception)
+      if (value.length >= minLength && value.length <= maxLength) {
+        return true
       }
+
+      return 'The title must contain a minimum of one character and a maximum of ten characters.'
     }
   }
 })
 
 const description = useField('description')
 const title = useField('title')
-const { addTodo } = useTodosStore()
 
 const submit = handleSubmit((values) => {
-  try {
-    const { description: formDescription, title: formTitle } = values
+  const { description: formDescription, title: formTitle } = values
 
-    addTodo(formTitle, formDescription)
-    handleReset()
-  } catch (exception) {
-    console.error(exception)
-  }
+  addTodo(formTitle, formDescription)
+  handleReset()
 })
 </script>
 
