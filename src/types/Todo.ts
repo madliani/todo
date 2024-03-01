@@ -5,4 +5,3 @@ export type Todo = {
 }
 
 export type Todos = Todo[]
-export type Filter = 'all' | 'finished' | 'unfinished'
